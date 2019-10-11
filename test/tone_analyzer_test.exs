@@ -13,7 +13,7 @@ defmodule ToneAnalyzerTest do
         header: "Content-Type: plain/text"
       }
 
-      assert {:ok, %{body: body}} = ToneAnalyzer.tone(:get, payload)
+      assert {:ok, %{body: body}} = ToneAnalyzer.tone(payload)
 
       assert {:ok,
               %{"document_tone" => %{"tones" => tones}, "sentences_tone" => list_of_sentences}} =
@@ -33,7 +33,7 @@ defmodule ToneAnalyzerTest do
         header: {"Content-Type", "application/json"}
       }
 
-      assert {:ok, %{body: body}} = ToneAnalyzer.tone(:post, payload)
+      assert {:ok, %{body: body}} = ToneAnalyzer.tone(payload)
 
       assert {:ok,
               %{"document_tone" => %{"tones" => tones}, "sentences_tone" => list_of_sentences}} =
@@ -53,7 +53,7 @@ defmodule ToneAnalyzerTest do
         header: {"Content-Type", "application/json"}
       }
 
-      assert {:ok, %{body: body}} = ToneAnalyzer.tone(:post, payload, true)
+      assert {:ok, %{body: body}} = ToneAnalyzer.tone(payload, sentences: true)
       assert {:ok, %{"document_tone" => %{"tones" => tones}}} = Poison.decode(body)
       assert is_list(tones)
     end
@@ -68,7 +68,7 @@ defmodule ToneAnalyzerTest do
         header: {"Content-Type", "application/json"}
       }
 
-      assert {:ok, %{body: body}} = ToneAnalyzer.tone(:post, payload, false)
+      assert {:ok, %{body: body}} = ToneAnalyzer.tone(payload, sentences: false)
       assert {:ok, %{"document_tone" => %{"tones" => tones}}} = Poison.decode(body)
       assert is_list(tones)
     end
