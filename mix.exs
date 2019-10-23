@@ -36,7 +36,7 @@ defmodule ExWatsonTone.MixProject do
   defp deps do
     [
       {:httpoison, "~> 1.3.0"},
-      {:poison, "~> 4.0"},
+      {:poison, "~> 3.0"},
 
       # Test
       {:excoveralls, "~> 0.9", only: :test},
